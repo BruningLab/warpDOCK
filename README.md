@@ -317,12 +317,12 @@ To import directly from ZINC, ensure that the ligand files have 3D coordinates a
 http://files.docking.org/3D/BC/CARN/BCCARN.xaa.pdbqt.gz
 
 ```
-./FileDivider.py
+./Downloader.py
 
 options:
-  -h, --help    show this help message and exit
-  -input INPUT  Path to PDBQTs for splitting
-  -ips IPS      Path to IP list file
+  -h, --help  show this help message and exit
+  -urls URLS  [REQUIRED] Path to the URLs.txt document
+  -out OUT    [REQUIRED] Output path for multi-PDBQT files
 ```
 
 The contents of each URL can be downloaded using the program "FileDivider.py" into a new folder. Whilst in PDBQT format, each file will have hundreds to thousands of ligand coordinates.
