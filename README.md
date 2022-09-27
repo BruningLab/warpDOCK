@@ -67,7 +67,6 @@ SSH into the login host-node and update:
 ssh -i <path to private key file> ubuntu@<login host-node IP>
 
 sudo apt update
-
 ```
 SSH into the control node and update:
 ```
@@ -88,7 +87,7 @@ Upload the public key file, save and close.
 
 &nbsp;
 
-From the host login-node SSH into the NFS server:
+From the host login-node SSH into the NFS server, update and install NFS-kernel dependencies:
 
 ```
 ssh -i <path to private key file> ubuntu@<NFS server IP address>
@@ -233,7 +232,7 @@ To unmount, enter:
 sudo unmount /mnt
 ```
 
-To mount persistently moun the block volume (recommended in the private subnet only), enter:
+To mount persistently mount the block volume (recommended in the private subnet only), enter:
 
 ```
 sudo vim /etc/fstab
@@ -252,15 +251,16 @@ To unmount, simply delete lines from the fstab file and then re-enter "sudo moun
 
 &nbsp;
 
-**Now, we will create a custom image with all the programs and dependencies**
+**Creating a custom image of the OS with all the programs and dependencies**
 
 Launch an instance in the private subnet called "config" with the Canonical ubuntu image and the following shape:
 
 Shape: Vm.E4.Flex OCPUs (n=64) and 64Gb RAM.
 
 SSH into the new instance and update.
+&nbsp;
 
-Next, download the source code for Qvina2:
+Download the source code for Qvina2:
 
 ```
 wget https://github.com/QVina/qvina/blob/master/bin/qvina2.1
@@ -269,33 +269,33 @@ Extact the contents and place in /usr/local/bin.
 
 Check that the install works correctly by entering "vina -h" in the terminal.
 
-Cd into /mnt and create the "NFS" directory. Using the instructions above, persistently mount the NFS server to the /mnt/NFS path.
+Cd into /mnt and create the "NFS" directory. Using the instructions above, persistently mount the NFS server to the /mnt/NFS path of the "config" instance.
 
 &nbsp;
 
-Warpdrive, installed with pip via:
+To install the warpDOCK software, it can be installed with the pip command:
 
 ```
 pip install warpdrive
 ```
-Or as source-code from the GitHub repository. If so,  navigate to the home directory of the new instance and enter the following:
+Or as source-code from this repository. If so, navigate to the home directory of the new instance and enter the following into the terminal:
 
 ```
-mkdir -p warpdrive
+mkdir -p warpdock
 
-sudo chown ubuntu:ubuntu warpdrive/
+sudo chown ubuntu:ubuntu warpdock/
 
-cd warpdrive/
+cd warpdock/
 
-vim warpdrive.py    # copy in the warpdrive code
+vim warpdrive.py    # copy in the warpdock code
 
 :wq
 
-chmod +x warpdrive.py
+chmod +x warpdock.py
 
-sudo ln -s /home/warpdrive/warpdrive.py /usr/local/bin/warpdrive
+sudo ln -s /home/warpdock/warpdock.py /usr/local/bin/warpdock    # creates a symlink
 ```
-Check that the install works by entering "warpdrive -h" into the terminal and then exit the compute instance.
+Check that the install works by entering "warpdock -h" into the terminal and then exit the "config" instance.
 
 &nbsp;
 
@@ -306,12 +306,14 @@ Exit the Control Node.
 &nbsp;
 
 In the homepage menu, navigate to instances and select the "config" compute instance. Under the "more options" tab select "create custom image". Follow the prompts and name as "warpdrive".
+&nbsp;
 
 On the left menu, select "Instance Configurations", and create a custom configuration using the warpdrive image with 64 OCPUs and 64Gb of RAM in the private subnet. Save and close.
+&nbsp;
 
 On the left menu, select "Instance Pool" and create a pool of instances using the custom configuration in the private subnet of the VCN.
 
-To check that everything works, SSH into one of the new instances and enter:
+To check that an instance is mounted to the NFS server correctly, SSH into it and enter in the terminal:
 
 ```
 df -h
@@ -320,7 +322,7 @@ lsblk
 ```
 Look to see if the /mnt/NFS file path is mounted to the vdb device. Try navigating to the /mnt/NFS create a directory. Exit the compute instance and find the directory in the Control node.
 
-Now, you are ready to start virtual screening. 
+Now, you are ready to start virtual screening from the Control node :)
 
 &nbsp;
 &nbsp;
