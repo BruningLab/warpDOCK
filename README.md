@@ -1,11 +1,11 @@
-# warpdrive
+# warpDOCK
 An ultra-large virtual drug discovery framework optimised for the Oracle Cloud Infrastructure network
 
 &nbsp;
 
 **Getting started**
 
-_The following documentation assusmes that you have set up your tenancy as a federated user are in your correct home region._
+_The following documentation assusmes that you have already set up your tenancy in the correct home region and are a federated user._
 
 &nbsp;
 
