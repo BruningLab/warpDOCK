@@ -365,9 +365,9 @@ options:
 
 &nbsp;
 
-**Dividing the ligand library up into batches for each instance**
+**Dividing the ligand library up into partitions for each instance**
 
-The program "FileDivider.py" can be used to quickly and easily create new folders and equal number of ligands into each. The number of folders to create is given by a text file containing a list of private IP addresses for each instance, seperated by new lines.
+The program "FileDivider.py" can be used to quickly and easily create new folders and equal number of ligands into each. The number of folders to create is given by a text file containing a list of private IP addresses for each instance, seperated by line.
 
 ```
 ./FileDivider.py
@@ -383,10 +383,10 @@ options:
 
 **Launching the queue-engine**
 
-When all instances are booted up and running, the queue-engine can be launched from the control node by calling the conductor. The sfactor is a value between 1 and 4 which sets the processing threshold.
+The queue-engine can be launched from the control node by calling the Conductor. The s-factor is a value between 1 and 4 which sets the processing threshold limit. Typically, an s-factor of 3 is recommended.
 
 ```
-conductor
+Conductor
 
 options:
   -h, --help          show this help message and exit
