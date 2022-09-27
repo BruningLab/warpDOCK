@@ -66,6 +66,15 @@ ssh -i <path to private key file> ubuntu@<login host-node IP>
 sudo apt update
 
 ```
+SSH into the control node and update:
+```
+ssh -i <path to private key file> ubuntu@<control node IP>
+
+sudo apt update
+
+exit
+```
+
 
 
 
