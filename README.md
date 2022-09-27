@@ -11,36 +11,38 @@ _The following documentation assusmes that you have already set up your tenancy 
 
 **Setting up the VCN, block volumes, instances and the NFS server**
 
-To get started, first ensure that you are in the correct region for which you want to create the virtual cloud network. Changing the VCN later will require setting up from scratch.
+To get started, ensure that you are in the correct region for which you want to create the virtual cloud network (VCN). Changing the region which houses the VCN later will require setting up from scratch.
 
 &nbsp;
 
   **Virtual cloud network**
   
-To set up your VCN, from the homepage menu (top left) navigate to the **Networking tab** and select "Virtual Cloud Networks". Either manually create a VCN or use the VCN Wizard (recommended). If using the VCN Wizard choose your VCN name and select the relevant compartment. For all other options leave as default.
+To set up the VCN, from the homepage menu (top left) navigate to the **Networking tab** and select "Virtual Cloud Networks". Here, either manually create a VCN or use the VCN Wizard (recommended). If using the VCN Wizard choose your VCN name and select the your user compartment. For all other options leave as default.
 
 &nbsp;
 
-**Bastian login node**
+**Login host-node**
 
-In the VCN there are two layers: the public subnet (accessible from a local server) and the private subnet (accessible from within the public subnet). For security reasons we will first set up a Bastian host node in the public subnet. 
+Within the VCN there are two layers: the public subnet and the private subnet (only accesible from the public subnet). For security, we will only use the login host-node as a lillypad to enter the private subnet. 
 
-Navigate to the **Compute** tab in the homepage menu and select "Instances" from the options. On the left side of the new window, select the correct compartment by clicking on the drop-down menu and ensure the correct Availability Domain is also checked below. Next, click on the "Create Instance" button and a new window will appear.
+Navigate to the **Compute** tab in the homepage menu and select "Instances" from the options menu. On the left side of the new window, choose your compartment by clicking on the drop-down menu. Next, click on the "Create Instance" button and a new window will appear.
 
-For a cloud instance (the computer) An _image_ refers to the operating system e.g., Ubuntu, and _shape_ refers to the hardware. Click on “edit” and then on the “Change image” button, a window will pop up on the right of the screen.
+In the cloud, the _shape_ (computer) is launched as an object termed an "Instance", and be a bare-metal machine, a virtual machine or a GPU - each shape has different characteristics. An _image_ refers to the operating system e.g., Ubuntu. Click on “edit” and then on the “Change image” button, a window will pop up on the right of the screen.
 
 
-Under "Platform Images" check Canonical Ubuntu and hit continue. The Bastion login node is used only as a lily-pad into the private subnet and simple functions, so select the Virtual machine tile, then Ampere as the brand. Under “Shape name” check VM.Standard.A1.Flex. Change the number of OCPUs as 1 and memory as 6Gb, hit continue.
-
-&nbsp;
-
-Next, under the **Networking** tab, check “private subnet”.
+Under "Platform Images" select Canonical Ubuntu and click on continue. As the host login-node is used only as a lillypad, select the Virtual machine tile and then Ampere as the brand. Under “Shape name” select VM.Standard.A1.Flex (_always free_). Change the number of CPUs to 1 and memory as 6Gb, select continue.
 
 &nbsp;
 
-Under the **Add SSH keys** tab, generate a key-pair and save (this is needed to set up other instances) or upload a pre-existing key.
+Next, under the **Networking** tab, select “public subnet” (which will generate a public IP address for the instance).
 
-Check “end to end” encryption.
+&nbsp;
+
+Under the **Add SSH keys** tab, generate a key-pair and save, or upload a pre-existing public key. The key file is essential for access to the public and private subnets - so keep it safe!!
+
+&nbsp;
+
+Select “end to end” encryption.
 
 Save and close.
 
