@@ -29,8 +29,11 @@ Within the VCN there are two layers: the public subnet and the private subnet (o
 
 Navigate to the **Compute** tab in the homepage menu and select "Instances" from the options menu. On the left side of the new window, choose your compartment by clicking on the drop-down menu. Next, click on the "Create Instance" button and a new window will appear.
 
+&nbsp;
+
 In the cloud, the _shape_ (computer) is launched as an object termed an "Instance", and be a bare-metal machine, a virtual machine or a GPU - each shape has different characteristics. An _image_ refers to the operating system e.g., Ubuntu. Click on “edit” and then on the “Change image” button, a window will pop up on the right of the screen.
 
+&nbsp;
 
 Under "Platform Images" select Canonical Ubuntu and click on continue. As the host login-node is used only as a lillypad, select the Virtual machine tile and then Ampere as the brand. Under “Shape name” select VM.Standard.A1.Flex (_always free_). Change the number of CPUs to 1 and memory as 6Gb, select continue.
 
@@ -75,50 +78,17 @@ sudo apt update
 exit
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-&nbsp;
-
-_Create a new instance in the **private subnet** called "NFS server" with the Canonical Ubuntu image and with the following shape:_
+_Create a new instance in the **private subnet** called "NFS server", with the Canonical Ubuntu image and the following shape:_
 
 Vm.E4.Flex: 12 OCPUs and 16Gb RAM.
 
 &nbsp;
 
-Upload the public key file.
+Upload the public key file, save and close.
 
 &nbsp;
 
-From your local computer SSH into the host login-node:
-
-```
-ssh -i <path to private key file> ubuntu@<public IP address>
-```
-
-If you encounter security errors with the private key file, change permissions:
-
-```
-chmod 400 <private key file>
-```
-
-Update the login host-node:
-
-```
-sudo apt update
-```
-
-Create a copy of private key file in the home directory and SSH into the  server:
+From the host login-node SSH into the NFS server:
 
 ```
 ssh -i <path to private key file> ubuntu@<NFS server IP address>
@@ -132,9 +102,6 @@ Exit the NFS server.
 
 &nbsp;
 
-
-
-&nbsp;
 
 _Navigate to the **Networking** tab in the homepage menu, and select the "Virtual Cloud Networks" link._
 
@@ -160,15 +127,17 @@ o	Select “security rules"
 
     •	Add and exit
 
-Repeat exactly the above for “Public Subnet VCN”.
+Repeat the above for “Public Subnet VCN”.
 
 &nbsp;
 
 _Navigate to Storage in the homepage menu and then into Block Volumes:_
 
-Follow the steps to create a block volume. A storge size of up to 10Tb (>100 million ligands) is appropriate for most ultra-large screens but can be increased later. Sometimes, the OS will prevent new data being written if capacity reaches ~55% so be mindful of this when choosing size.
+Follow the steps to create a block volume. A storage size of up to 10Tb is appropriate for most ultra-large screens (>100 million ligands) but can be increased or decreased later. Sometimes, the OS will prevent new data being written if capacity reaches ~55%, so be mindful of this when allocating block volume size.
 
-SSH into the NFS server home directory from the Bastian login node and enter the following commands:
+&nbsp;
+
+SSH back into the NFS server and in the home directory enter the following commands:
 
 ```
 sudo mkdir -p /mnt/NFS
@@ -179,14 +148,14 @@ sudo chown ubuntu:ubuntu NFS/
 
 sudo vim /etc/exports
 ```
-Add a new line and enter:
+Add a new line to the exports file and enter:
 
 ```
 /mnt/NFS * (rw, sync, no_root_squash, no_subtree_check)
 
 :wq
 ```
-Save and close, then execute then enter following commands to open up the ports:
+Save and close, then enter following commands through the terminal to open up the ports:
 
 ```
 sudo iptables -I INPUT -m state --state NEW -p tcp --destination-port 111 -j ACCEPT
