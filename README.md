@@ -25,6 +25,8 @@ To set up the VCN, from the homepage menu (top left) navigate to the **Networkin
 
 Within the VCN there are two layers: the public subnet and the private subnet (only accesible from the public subnet). For security, we will only use the login host-node as a lillypad to enter the private subnet. 
 
+&nbsp;
+
 Navigate to the **Compute** tab in the homepage menu and select "Instances" from the options menu. On the left side of the new window, choose your compartment by clicking on the drop-down menu. Next, click on the "Create Instance" button and a new window will appear.
 
 In the cloud, the _shape_ (computer) is launched as an object termed an "Instance", and be a bare-metal machine, a virtual machine or a GPU - each shape has different characteristics. An _image_ refers to the operating system e.g., Ubuntu. Click on “edit” and then on the “Change image” button, a window will pop up on the right of the screen.
@@ -48,43 +50,80 @@ Save and close.
 
 &nbsp;
 
-**Launch the NFS server and attach a block volume (the scratch surface)**
+**Create the control node, launch the NFS server and attach a block volume (the scratch surface)**
 
-_Repeat the above steps to create an instance in the private subnet with the Canonical Ubuntu image but change the shape to:_
+_Create a new instance in the **private subnet** called "Control Node" with the Canonical Ubuntu image and the following shape:_
 
-Shape: Vm.E4.Flex OCPUs (n=12) and 16Gb RAM.
+Vm.E4.Flex CPUs = 1 and 32Gb RAM.
+
+Upload the public key file.
+
+SSH into the login host-node and update:
+
+```
+ssh -i <path to private key file> ubuntu@<login host-node IP>
+
+sudo apt update
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 &nbsp;
 
-From your local computer SSH into the Bastian host:
+_Create a new instance in the **private subnet** called "NFS server" with the Canonical Ubuntu image and with the following shape:_
+
+Vm.E4.Flex: 12 OCPUs and 16Gb RAM.
+
+&nbsp;
+
+Upload the public key file.
+
+&nbsp;
+
+From your local computer SSH into the host login-node:
 
 ```
 ssh -i <path to private key file> ubuntu@<public IP address>
 ```
 
-If security errors are encountered change permissions:
+If you encounter security errors with the private key file, change permissions:
 
 ```
 chmod 400 <private key file>
 ```
 
-Once in the Bastian login node within the public subnet, create a private key file and SSH into the NFS server, then update and install nfs-kernel dependencies:
+Update the login host-node:
 
 ```
-ssh -i <private key file> ubuntu@<NFS server IP address>
+sudo apt update
+```
+
+Create a copy of private key file in the home directory and SSH into the  server:
+
+```
+ssh -i <path to private key file> ubuntu@<NFS server IP address>
 
 sudo apt update
 
 sudo apt-get install nfs-kernerl-server
 ```
 
+Exit the NFS server.
+
 &nbsp;
 
-_Create a new instance in the private subnet called "Control Node" with the Canonical Ubuntu image and the following shape:_
 
-Shape: Vm.E4.Flex OCPUs (n=1) and 32Gb RAM.
-
-SSH into the control node from the Bastian login node and update.
 
 &nbsp;
 
