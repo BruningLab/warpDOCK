@@ -1,9 +1,12 @@
 # warpDOCK
 An ultra-large virtual drug discovery framework optimised for the Oracle Cloud Infrastructure network
 
-&nbsp;
 
-**Getting started**
+    
+&nbsp;
+    
+    **1. Getting started: setting up the Virtual Cloud Network**
+
 
 _The following documentation assusmes that you have already set up your tenancy in the correct home region and are a federated user._
 
@@ -15,13 +18,13 @@ To get started, ensure that you are in the correct region for which you want to 
 
 &nbsp;
 
-  **Virtual cloud network**
+  **1.1. Virtual cloud network**
   
 To set up the VCN, from the homepage menu (top left) navigate to the **Networking tab** and select "Virtual Cloud Networks". Here, either manually create a VCN or use the VCN Wizard (recommended). If using the VCN Wizard choose your VCN name and select the your user compartment. For all other options leave as default.
 
 &nbsp;
 
-**Login host-node**
+**1.2. Login host-node**
 
 Within the VCN there are two layers: the public subnet and the private subnet (only accesible from the public subnet). For security, we will only use the login host-node as a lillypad to enter the private subnet. 
 
@@ -53,7 +56,7 @@ Save and close.
 
 &nbsp;
 
-**Create the control node, launch the NFS server and attach a block volume (the scratch surface)**
+**1.3. Create the control node, launch the NFS server and attach a block volume (the scratch surface)**
 
 _Create a new instance in the **private subnet** called "Control Node" with the Canonical Ubuntu image and the following shape:_
 
@@ -130,6 +133,7 @@ Repeat the above for “Public Subnet VCN”.
 
 &nbsp;
 
+
 _Navigate to Storage in the homepage menu and then into Block Volumes:_
 
 Follow the steps to create a block volume. A storage size of up to 10Tb is appropriate for most ultra-large screens (>100 million ligands) but can be increased or decreased later. Sometimes, the OS will prevent new data being written if capacity reaches ~55%, so be mindful of this when allocating block volume size.
@@ -182,7 +186,7 @@ sudo service nfs-kernel-server restart
 
 &nbsp;
 
-**To mount the block volume to the NFS server**
+**1.4. Block volume and mounting to NFS server**
 
 Navigate to **Storage** in the homepage menu and select "block volumes". Select "Attached Instances" then select "Attach to instance":
 
@@ -251,58 +255,16 @@ To unmount, simply delete lines from the fstab file and then re-enter "sudo moun
 
 &nbsp;
 
-**Creating a custom image of the OS with all the programs and dependencies**
+    **2. Installing warpDOCK**
+&nbsp;
+
+    **3. Creating a custom image**
 
 Launch an instance in the private subnet called "config" with the Canonical ubuntu image and the following shape:
 
 Shape: Vm.E4.Flex OCPUs (n=64) and 64Gb RAM.
 
 SSH into the new instance and update.
-&nbsp;
-
-Download the source code for Qvina2:
-
-```
-wget https://github.com/QVina/qvina/blob/master/bin/qvina2.1
-```
-Extact the contents and place in /usr/local/bin.
-
-Check that the install works correctly by entering "vina -h" in the terminal.
-
-Cd into /mnt and create the "NFS" directory. Using the instructions above, persistently mount the NFS server to the /mnt/NFS path of the "config" instance.
-
-&nbsp;
-
-To install the warpDOCK software, it can be installed with the pip command:
-
-```
-pip install warpdrive
-```
-Or as source-code from this repository. If so, navigate to the home directory of the new instance and enter the following into the terminal:
-
-```
-mkdir -p warpdock
-
-sudo chown ubuntu:ubuntu warpdock/
-
-cd warpdock/
-
-vim warpdrive.py    # copy in the warpdock code
-
-:wq
-
-chmod +x warpdock.py
-
-sudo ln -s /home/warpdock/warpdock.py /usr/local/bin/warpdock    # creates a symlink
-```
-Check that the install works by entering "warpdock -h" into the terminal and then exit the "config" instance.
-
-&nbsp;
-
-SSH into the Control Node and **repeat the exact steps as above** but name the directory "Conductor" and create the conductor.py script.
-
-Exit the Control Node.
-
 &nbsp;
 
 In the homepage menu, navigate to instances and select the "config" compute instance. Under the "more options" tab select "create custom image". Follow the prompts and name as "warpdrive".
@@ -327,35 +289,33 @@ Now, you are ready to start virtual screening from the Control node :)
 &nbsp;
 &nbsp;
 
-# Usage and examples
+    4. **Usage and examples**
 
 &nbsp;
 
-**Importing a ligand library directly into the VCN from ZINC**
+**Importing ligand library directly into the VCN from ZINC**
 
 To import directly from ZINC, ensure that the ligand files have 3D coordinates and are in PDBQT format. Save the output as raw URLs and copy into a new .txt in the VCN. An example URL file is:
 
 http://files.docking.org/3D/BC/CARN/BCCARN.xaa.pdbqt.gz
 
 ```
-./Downloader.py
+ZincDownloader
 
 options:
   -h, --help  show this help message and exit
-  -urls URLS  [REQUIRED] Path to the URLs.txt document
+  -input     [REQUIRED] Path to the URLs.txt document
   -out OUT    [REQUIRED] Output path for multi-PDBQT files
 ```
-
-The contents of each URL can be downloaded using the program "FileDivider.py" into a new folder. Whilst in PDBQT format, each file will have hundreds to thousands of ligand coordinates.
 
 &nbsp;
 
 **Splitting each multi-PDBQT file into individual files**
 
-The program "Splitter.py" is used to process each multi-PDBQT file and strip out the details and coordinates of each ligand, and write to a new file. 
+The program "Splitter" is used to process each multi-PDBQT file and strip out the details and coordinates of each ligand, and write to a new file. 
 
 ```
-./Splitter.py
+Splitter
 
 options:
   -h, --help            show this help message and exit
@@ -367,10 +327,10 @@ options:
 
 **Dividing the ligand library up into partitions for each instance**
 
-The program "FileDivider.py" can be used to quickly and easily create new folders and equal number of ligands into each. The number of folders to create is given by a text file containing a list of private IP addresses for each instance, seperated by line.
+The program "FileDivider" can be used to quickly and easily create new folders and equal number of ligands into each. The number of folders to create is given by a text file containing a list of private IP addresses for each instance, seperated by line.
 
 ```
-./FileDivider.py
+FileDivider
 
 options:
   -h, --help    show this help message and exit
@@ -381,7 +341,7 @@ options:
 
 &nbsp;
 
-**Launching the queue-engine**
+**Launching the queue-engine: warpdrive**
 
 The queue-engine can be launched from the control node by calling the Conductor. The s-factor is a value between 1 and 4 which sets the processing threshold limit. Typically, an s-factor of 3 is recommended.
 
@@ -406,10 +366,10 @@ options:
 
 **Retrieving the results and compiling into a CSV file with maximum and minimum values over a specified number of poses**
 
-The program "FetchResults.py" is used to scrape through the logs file for each ligand and strip out the binding scores (kcal/mol) and write maximum and minimum values to a CSV file. The number of poses refers to the range e.g., the top pose and the next 3 poses.
+The program "FetchResults" is used to scrape through the logs file for each ligand and strip out the binding scores (kcal/mol), and write maximum and minimum values to a CSV file. The number of poses refers to the range e.g., the top pose and the next 3 poses.
 
 ```
-./FetchResults.py
+FetchResults
 
 options:
   -h, --help        show this help message and exit
@@ -420,10 +380,10 @@ options:
 
 **Extracting top poses, logs files and library ligand coordinates**
 
-The program "ReDocking.py" can be used extract a top specified number of files from results, logs and the ligand library based on the CSV generated by FetchResults.py and copy to a new directory.
+The program "ReDocking" can be used extract a top specified number of files from results, logs and the ligand library based on the CSV generated by "FetchResults" and copy to a new directory.
 
 ```
-./ReDocking.py
+ReDocking
 
 options:
   -h, --help            show this help message and exit
