@@ -12,8 +12,6 @@ _The following documentation assusmes that you have already set up your tenancy 
 
 &nbsp;
 
-**Setting up the VCN, block volumes, instances and the NFS server**
-
 To get started, ensure that you are in the correct region for which you want to create the virtual cloud network (VCN). Changing the region which houses the VCN later will require setting up from scratch.
 
 &nbsp;
