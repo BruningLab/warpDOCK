@@ -268,7 +268,7 @@ SSH into the new instance and update.
 In the homepage menu, navigate to instances and select the "config" compute instance. Under the "more options" tab select "create custom image". Follow the prompts and name as "warpdrive".
 &nbsp;
 
-On the left menu, select "Instance Configurations", and create a custom configuration using the warpdrive image with 64 OCPUs and 64Gb of RAM in the private subnet. Save and close.
+On the left menu, select "Instance Configurations", and create a custom configuration using the warpDOCK image with 64 OCPUs and 64Gb of RAM in the private subnet. Save and close.
 &nbsp;
 
 On the left menu, select "Instance Pool" and create a pool of instances using the custom configuration in the private subnet of the VCN.
