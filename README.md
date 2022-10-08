@@ -95,7 +95,7 @@ ssh -i <path to private key file> ubuntu@<NFS server IP address>
 
 sudo apt update
 
-sudo apt-get install nfs-kernerl-server
+sudo apt-get install nfs-kernel-server
 ```
 
 Exit the NFS server.
