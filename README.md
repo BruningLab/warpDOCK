@@ -8,7 +8,7 @@ An ultra-large virtual drug discovery framework optimised for the Oracle Cloud I
 **1. Getting started: setting up the Virtual Cloud Network**
 
 
-_The following documentation assusmes that you have already set up your tenancy in the correct home region and are a federated user._
+_The following documentation assumes that you have already set up your tenancy in the correct home region and are a federated user._
 
 &nbsp;
 
