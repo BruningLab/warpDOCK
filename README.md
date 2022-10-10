@@ -287,7 +287,7 @@ Now, you are ready to start virtual screening from the Control node :)
 &nbsp;
 &nbsp;
 
-    4. **Usage and examples**
+4. **Usage and examples**
 
 &nbsp;
 
