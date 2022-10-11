@@ -8,17 +8,18 @@ sudo pip3 install pandas
 sudo mkdir -p /opt/WarpDock
 cd /opt/WarpDock
 
-sudo wget https://github.com/BruningLab/warpDOCK/blob/main/bin/Conductor.py
-sudo wget https://github.com/BruningLab/warpDOCK/blob/main/bin/FetchResults.py
-sudo wget https://github.com/BruningLab/warpDOCK/blob/main/bin/FileDivider.py
-sudo wget https://github.com/BruningLab/warpDOCK/blob/main/bin/PDBQTsplitter.py
-sudo wget https://github.com/BruningLab/warpDOCK/blob/main/bin/ReDocking.py
-sudo wget https://github.com/BruningLab/warpDOCK/blob/main/bin/Splitter.py
-sudo wget https://github.com/BruningLab/warpDOCK/blob/main/bin/WarpDrive.py
-sudo wget https://github.com/BruningLab/warpDOCK/blob/main/bin/ZincDownloader.py 
+sudo wget https://raw.githubusercontent.com/BruningLab/warpDOCK/blob/main/bin/Conductor.py
+sudo wget https://raw.githubusercontent.com/BruningLab/warpDOCK/blob/main/bin/FetchResults.py
+sudo wget https://raw.githubusercontent.com/BruningLab/warpDOCK/blob/main/bin/FileDivider.py
+sudo wget https://raw.githubusercontent.com/BruningLab/warpDOCK/blob/main/bin/PDBQTsplitter.py
+sudo wget https://raw.githubusercontent.com/BruningLab/warpDOCK/blob/main/bin/ReDocking.py
+sudo wget https://raw.githubusercontent.com/BruningLab/warpDOCK/blob/main/bin/Splitter.py
+sudo wget https://raw.githubusercontent.com/BruningLab/warpDOCK/blob/main/bin/WarpDrive.py
+sudo wget https://raw.githubusercontent.com/BruningLab/warpDOCK/blob/main/bin/ZincDownloader.py 
 
 sudo wget https://github.com/QVina/qvina/raw/master/bin/qvina2.1
 
+sudo chmod 777 /opt/WarpDock/*
 
 sudo ln -s /opt/WarpDock/Conductor.py /usr/local/bin/Conductor
 sudo ln -s /opt/WarpDock/FetchResults.py /usr/local/bin/FetchResults
