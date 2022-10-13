@@ -58,7 +58,7 @@ Save and close.
 
 _Create a new instance in the **private subnet** called "Control Node" with the Canonical Ubuntu image and the following shape:_
 
-Vm.E4.Flex CPUs = 1 and 32Gb RAM.
+Vm.E4.Flex CPUs = 12 and 32Gb RAM.
 
 Upload the public key file.
 
@@ -231,19 +231,33 @@ To unmount, simply delete lines from the fstab file and then re-enter "sudo moun
 **2. Installing warpDOCK**
 &nbsp;
 
+&nbsp;
+
+SSH into the Control Node and download the "Installer.sh" script the repository. Make it executable with the command and run:
+
+```
+sudo chmod +x Installer.sh
+
+./Installer.sh
+```
+Running the installer will download the warpDOCK code and Qvina2.1
+
+&nbsp;
+
+
 **3. Creating a custom image**
 
-Launch an instance in the private subnet called "config" with the Canonical ubuntu image and the following shape:
-
-Shape: Vm.E4.Flex OCPUs (n=64) and 64Gb RAM.
-
-SSH into the new instance and update.
 &nbsp;
 
-In the homepage menu, navigate to instances and select the "config" compute instance. Under the "more options" tab select "create custom image". Follow the prompts and name as "warpdrive".
+For the creation of compute instances we will first make a clone of the image associated with the Control Node. This will ensure we have all the code and are linked to the NFS server and block volume.
+
 &nbsp;
 
-On the left menu, select "Instance Configurations", and create a custom configuration using the warpDOCK image with 64 OCPUs and 64Gb of RAM in the private subnet. Save and close.
+In the homepage menu, navigate to Instances and select the Control Node compute instance. Under the "more options" tab select "create custom image". Follow the prompts and name as "warpDOCK config".
+
+&nbsp;
+
+On the left menu, select "Instance Configurations", and create a custom configuration using the "warpDOCK config" image with 64 OCPUs and 64Gb of RAM in the private subnet. Save and close.
 &nbsp;
 
 On the left menu, select "Instance Pool" and create a pool of instances using the custom configuration in the private subnet of the VCN.
@@ -257,7 +271,7 @@ lsblk
 ```
 Look to see if the /mnt/NFS file path is mounted to the vdb device. Try navigating to the /mnt/NFS create a directory. Exit the compute instance and find the directory in the Control node.
 
-Now, you are ready to start virtual screening from the Control node :)
+Now, you are ready to start virtual screening from the Control Node :)
 
 &nbsp;
 &nbsp;
