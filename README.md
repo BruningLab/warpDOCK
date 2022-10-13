@@ -156,31 +156,6 @@ Add a new line to the exports file and enter:
 
 :wq
 ```
-Save and close, then enter following commands through the terminal to open up the ports:
-
-```
-sudo iptables -I INPUT -m state --state NEW -p tcp --destination-port 111 -j ACCEPT
-
-sudo iptables -I INPUT -m state --state NEW -p tcp --destination-port 2048 -j ACCEPT
-
-sudo iptables -I INPUT -m state --state NEW -p tcp --destination-port 2049 -j ACCEPT
-
-sudo iptables -I INPUT -m state --state NEW -p tcp --destination-port 2050 -j ACCEPT
-
-sudo iptables -I INPUT -m state --state NEW -p udp --destination-port 111 -j ACCEPT
-
-sudo iptables -I INPUT -m state --state NEW -p udp --destination-port 2048 -j ACCEPT
-
-sudo iptables -I INPUT -m state --state NEW -p udp --destination-port 2049 -j ACCEPT
-
-sudo iptables -I INPUT -m state --state NEW -p udp --destination-port 2050 -j ACCEPT
-
-sudo netfilter -persistent save
-
-sudo exportfs -a
-
-sudo service nfs-kernel-server restart
-```
 
 &nbsp;
 
