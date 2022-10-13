@@ -69,7 +69,7 @@ ssh -i <path to private key file> ubuntu@<login host-node IP>
 
 sudo apt update
 ```
-SSH into the control node and update:
+SSH into the Control Node and update:
 ```
 ssh -i <path to private key file> ubuntu@<control node IP>
 
@@ -132,7 +132,7 @@ Repeat the above for “Public Subnet VCN”.
 &nbsp;
 
 
-_Navigate to Storage in the homepage menu and then into Block Volumes:_
+_Navigate to **Storage** in the homepage menu and then into Block Volumes:_
 
 Follow the steps to create a block volume. A storage size of up to 10Tb is appropriate for most ultra-large screens (>100 million ligands) but can be increased or decreased later. Sometimes, the OS will prevent new data being written if capacity reaches ~55%, so be mindful of this when allocating block volume size.
 
@@ -231,8 +231,6 @@ To unmount, simply delete lines from the fstab file and then re-enter "sudo moun
 **2. Installing warpDOCK**
 &nbsp;
 
-&nbsp;
-
 SSH into the Control Node and download the "Installer.sh" script the repository. Make it executable with the command and run:
 
 ```
@@ -241,6 +239,8 @@ sudo chmod +x Installer.sh
 ./Installer.sh
 ```
 Running the installer will download the warpDOCK code and Qvina2.1
+
+Ensure that the install stall worked by calling "vina".
 
 &nbsp;
 
@@ -253,14 +253,14 @@ For the creation of compute instances we will first make a clone of the image as
 
 &nbsp;
 
-In the homepage menu, navigate to Instances and select the Control Node compute instance. Under the "more options" tab select "create custom image". Follow the prompts and name as "warpDOCK config".
+In the homepage menu, navigate to **Instances** and select the Control Node compute instance. Under the "more options" tab select "create custom image". Follow the prompts and name as "warpDOCK config".
 
 &nbsp;
 
 On the left menu, select "Instance Configurations", and create a custom configuration using the "warpDOCK config" image with 64 OCPUs and 64Gb of RAM in the private subnet. Save and close.
 &nbsp;
 
-On the left menu, select "Instance Pool" and create a pool of instances using the custom configuration in the private subnet of the VCN.
+On the left menu, select "Instance Pool" and create a pool of instances using the custom configuration in the private subnet of the VCN. Here it is important to consider the resources that you will need to perform the screen as the chemical library will be partitioned into sub-folders proportional to the number of instances.
 
 To check that an instance is mounted to the NFS server correctly, SSH into it and enter in the terminal:
 
@@ -273,7 +273,6 @@ Look to see if the /mnt/NFS file path is mounted to the vdb device. Try navigati
 
 Now, you are ready to start virtual screening from the Control Node :)
 
-&nbsp;
 &nbsp;
 
 4. **Usage and examples**
