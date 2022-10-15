@@ -277,8 +277,6 @@ Now, you are ready to start virtual screening from the Control Node :)
 
 4. **Usage and examples**
 
-&nbsp;
-
 **Importing ligand library directly into the VCN from ZINC**
 
 To import directly from ZINC, ensure that the ligand files have 3D coordinates and are in PDBQT format. Save the output as raw URLs and copy into a new .txt in the VCN. An example URL file is:
