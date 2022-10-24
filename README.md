@@ -1,5 +1,5 @@
 # warpDOCK
-An ultra-large virtual drug discovery framework optimised for the Oracle Cloud Infrastructure network
+A large-scale virtual drug discovery framework optimised for the Oracle Cloud Infrastructure network
 
 
     
