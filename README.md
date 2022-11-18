@@ -152,9 +152,33 @@ sudo vim /etc/exports
 Add a new line to the exports file and enter:
 
 ```
-/mnt/NFS * (rw, sync, no_root_squash, no_subtree_check)
+/mnt/NFS *(rw,sync,no_root_squash,no_subtree_check)
 
 :wq
+```
+Save and close the text editor, then enter the following code chunk into the terminal to open up the ports:
+```
+sudo iptables -I INPUT -m state --state NEW -p tcp --destination-port 111 -j ACCEPT
+
+sudo iptables -I INPUT -m state --state NEW -p tcp --destination-port 2048 -j ACCEPT
+
+sudo iptables -I INPUT -m state --state NEW -p tcp --destination-port 2049 -j ACCEPT
+
+sudo iptables -I INPUT -m state --state NEW -p tcp --destination-port 2050 -j ACCEPT
+
+sudo iptables -I INPUT -m state --state NEW -p udp --destination-port 111 -j ACCEPT
+
+sudo iptables -I INPUT -m state --state NEW -p udp --destination-port 2048 -j ACCEPT
+
+sudo iptables -I INPUT -m state --state NEW -p udp --destination-port 2049 -j ACCEPT
+
+sudo iptables -I INPUT -m state --state NEW -p udp --destination-port 2050 -j ACCEPT
+
+sudo netfilter-persistent save
+
+sudo exportfs -a
+
+sudo service nfs-kernel-server restart
 ```
 
 &nbsp;
@@ -166,6 +190,7 @@ Navigate to **Storage** in the homepage menu and select "block volumes". Select 
 - check "read/write"
 - select instance: "NFS" (the server you just created)
 - select "Attach"
+- add filepath for block volume: /dev/oracleoci/oraclevdb
 
 Select options for attached instance:
 
