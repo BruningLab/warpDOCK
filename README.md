@@ -54,9 +54,9 @@ Save and close.
 
 &nbsp;
 
-**1.3. Create the control node, launch the NFS server and attach a block volume (the scratch surface)**
+**1.3. Create the Control-node, launch the NFS server and attach a block volume (the scratch surface)**
 
-_Create a new instance in the **private subnet** called "Control Node" with the Canonical Ubuntu image and the following shape:_
+_Create a new instance in the **private subnet** called "Control-node" with the Canonical Ubuntu image and the following shape:_
 
 Vm.E4.Flex CPUs = 12 and 32Gb RAM.
 
@@ -69,7 +69,7 @@ ssh -i <path to private key file> ubuntu@<login host-node IP>
 
 sudo apt update
 ```
-SSH into the Control Node and update:
+From the login host-node, SSH into the Control-node and update:
 ```
 ssh -i <path to private key file> ubuntu@<control node IP>
 
@@ -77,12 +77,10 @@ sudo apt update
 
 exit
 ```
-
+&nbsp
 _Create a new instance in the **private subnet** called "NFS server", with the Canonical Ubuntu image and the following shape:_
 
 Vm.E4.Flex: 12 OCPUs and 16Gb RAM.
-
-&nbsp;
 
 Upload the public key file, save and close.
 
@@ -96,9 +94,9 @@ ssh -i <path to private key file> ubuntu@<NFS server IP address>
 sudo apt update
 
 sudo apt-get install nfs-kernel-server
-```
 
-Exit the NFS server.
+exit
+```
 
 &nbsp;
 
@@ -134,11 +132,11 @@ Repeat the above for “Public Subnet VCN”.
 
 _Navigate to **Storage** in the homepage menu and then into Block Volumes:_
 
-Follow the steps to create a block volume. A storage size of up to 10Tb is appropriate for most ultra-large screens (>100 million ligands) but can be increased or decreased later. Sometimes, the OS will prevent new data being written if capacity reaches ~55%, so be mindful of this when allocating block volume size.
+Follow the steps to create a block volume. A storage size of up 6-10Tb is appropriate for most ultra-large screens (>100 million ligands) but can be increased or decreased later. Sometimes, the OS will prevent new data being written if capacity reaches ~55%, so be mindful of this when allocating block volume size.
 
 &nbsp;
 
-SSH back into the NFS server and in the home directory enter the following commands:
+From the host login-node, SSH into the NFS server and in the home directory enter the following commands into the terminal:
 
 ```
 sudo mkdir -p /mnt/NFS
@@ -149,7 +147,7 @@ sudo chown ubuntu:ubuntu NFS/
 
 sudo vim /etc/exports
 ```
-Add a new line to the exports file and enter:
+Add a new line to the exports file and add:
 
 ```
 /mnt/NFS *(rw,sync,no_root_squash,no_subtree_check)
@@ -192,14 +190,12 @@ Navigate to **Storage** in the homepage menu and select "block volumes". Select 
 - select "Attach"
 - add filepath for block volume: /dev/oracleoci/oraclevdb
 
-Select options for attached instance:
+Once the block volume has finished provisioning, select options for attached instance:
 
 - select "iSCI Commands and Information"
 - copy "attach" commands
 
-In NFS server, paste and enter the iSCI commands.
-
-Next, enter the following:
+In NFS server, paste and enter the iSCI commands into the terminal. When this is complete, enter the following into the terminal:
 
 ```
 sudo mkfs.ext4 /dev/oracleoci/oraclevdb
@@ -214,16 +210,18 @@ Enter on a new line in the fstab file:
 
 :wq
 ```
-Save and exit, then enter:
+Save and exit the text editor, then enter the following into the terminal:
 
 ```
 sudo mount -a
 ```
+
+
 &nbsp;
 
 **The NFS server (and by virtue block volume) can be mounted to the control node by one of two ways.**
 
-SSH into the Control node. To temporary mount the block volume, enter:
+SSH into the Control node. To temporary mount the block volume, enter into the terminal:
 
 ```
 sudo mount <NFS_IP>:/mnt/NFS /mnt
@@ -234,7 +232,7 @@ To unmount, enter:
 sudo unmount /mnt
 ```
 
-To mount persistently mount the block volume (recommended in the private subnet only), enter:
+To mount persistently mount the block volume (this is recommended in the private subnet only), enter into the terminal:
 
 ```
 sudo vim /etc/fstab
