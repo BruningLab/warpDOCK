@@ -68,9 +68,9 @@ def get_affinity_list(logpath, nump, out):
             
         
 if __name__ == '__main__':
-    args = argparse.ArgumentParser(description="Fetch Results")
+    args = argparse.ArgumentParser(description="Fetch Results: write CSV file with Max and Min affinities over a range")
     args.add_argument("-logpath", help="[REQUIRED] Path to the log file folder", required=True, type=str)
-    args.add_argument("-nump", help="[REQUIRED] Number of docking poses", required=True, type=int)
+    args.add_argument("-nump", help="[REQUIRED] Range of docking poses to cover e.g., 3", required=True, type=int)
     args.add_argument("-out", help="[REQUIRED] Output CSV file name (*.csv)", required=True, type=str)
     paser = args.parse_args()
 
