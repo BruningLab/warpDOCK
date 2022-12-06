@@ -1,14 +1,21 @@
 # warpDOCK
-A large-scale virtual drug discovery framework optimised for the Oracle Cloud Infrastructure network
+A large-scale virtual drug discovery pipeline optimised for Oracle Cloud Infrastructure.
+&nbsp;
 
+In this documentation we will cover:
 
+o   Setting up a virtual cloud network (VCN) in Oracle Cloud Infrastructure
+o   Creating the Network File Storage (NFS) server in the VCN and attaching cloud storage devices
+o   Setting up different computing shapes (CPUs)
+o   Installing the warpDOCK software
+o   Description of warpDOCK programs and example implementation
     
 &nbsp;
     
 **1. Getting started: setting up the Virtual Cloud Network**
 
 
-_The following documentation assumes that you have already set up your tenancy in the correct home region and are a federated user._
+_This documentation assumes that you have already set up your tenancy in your home region._
 
 &nbsp;
 
