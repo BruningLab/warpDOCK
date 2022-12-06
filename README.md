@@ -4,11 +4,11 @@ A large-scale virtual drug discovery pipeline optimised for Oracle Cloud Infrast
 
 In this documentation we will cover:
 
-o   Setting up a virtual cloud network (VCN) in Oracle Cloud Infrastructure
-o   Creating the Network File Storage (NFS) server in the VCN and attaching cloud storage devices
-o   Setting up different computing shapes (CPUs)
-o   Installing the warpDOCK software
-o   Description of warpDOCK programs and example implementation
+- Setting up a virtual cloud network (VCN) in Oracle Cloud Infrastructure
+- Creating the Network File Storage (NFS) server in the VCN and attaching cloud storage devices
+- Setting up different computing shapes (CPUs)
+- Installing the warpDOCK software
+- Description of warpDOCK programs and example implementation
     
 &nbsp;
     
