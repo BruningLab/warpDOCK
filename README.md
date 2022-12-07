@@ -411,3 +411,5 @@ options:
 Enjoy virtual screening. For any issues that arise please contact the Bruning Lab directly.
 
 For best practice in virtual ligand screening, we recommend reading the following _Nature Protocols_ paper by Brian K. Shoichet and colleagues (2021), which can be found here: https://www.nature.com/articles/s41596-021-00597-z
+&nbsp;
+For technical support using OCI, please contact Oracle directly or use the extensive documentation provided here: https://docs.oracle.com/en/
