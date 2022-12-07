@@ -45,7 +45,7 @@ if __name__ == '__main__':
     iplist = get_ip_List(ip_list=parser.ips)
     
     for ip in iplist:
-        pre_command = "warpdrive " \
+        pre_command = "WarpDrive " \
                       "-results {1}/ " \
                       "-logs {2}/ " \
                       "-receptor {3} " \
