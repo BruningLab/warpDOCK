@@ -61,8 +61,8 @@ def split_pdbqt(fname, out_path):
 
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
-    args.add_argument("-i", "--input", help="[REQUIRED] Input multi-PDBQT", required=True)
-    args.add_argument("-o", "--out", help="[REQUIRED] Output path for individual PDBQTs", required=True)
+    args.add_argument("-i", "--input", help="[REQUIRED] Input path multi-PDBQT directory", required=True)
+    args.add_argument("-o", "--out", help="[REQUIRED] Output path for individual .PDBQT files", required=True)
     parser = args.parse_args()
     split_pdbqt(parser.input, parser.out)
 
