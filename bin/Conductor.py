@@ -28,13 +28,13 @@ def run(key, user, ip, command):
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
     args.add_argument("-key", help="Path to the private key", required=True)
-    args.add_argument("-path", help="Path to splinted folders", required=True)
-    args.add_argument("-ips", help="Path to the ip.txt file", required=True)
-    args.add_argument("-results", help="Path to results folder", required=True)
-    args.add_argument("-logs", help="Path to logs folder", required=True)
-    args.add_argument("-receptor", help="Path to receptor.pdbqt", required=True)
-    args.add_argument("-config", help="Path to config file", required=True)
-    args.add_argument("-sfactor", help="Scaling factor", required=True)
+    args.add_argument("-path", help="Path to the directory with pre-partitioned libraries", required=True)
+    args.add_argument("-ips", help="Path to the IP address file", required=True)
+    args.add_argument("-results", help="Path to results output folder", required=True)
+    args.add_argument("-logs", help="Path to logs output folder", required=True)
+    args.add_argument("-receptor", help="Path to receptor.pdbqt file", required=True)
+    args.add_argument("-config", help="Path to configuration file", required=True)
+    args.add_argument("-sfactor", help="Scaling factor (1 to 4)", required=True)
     parser = args.parse_args()
 
     if parser.path[-1] == "/":
