@@ -2,7 +2,7 @@
 A large-scale virtual drug discovery pipeline optimised for Oracle Cloud Infrastructure.
 &nbsp;
 
-In this documentation we will cover:
+This documentation covers:
 
 - Setting up a virtual cloud network (VCN) in Oracle Cloud Infrastructure
 - Creating the Network File Storage (NFS) server in the VCN and attaching cloud storage devices
