@@ -21,7 +21,7 @@ def ReDocking(pdbqtfiles, csvfile, newfolder, top):
 
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
-    args.add_argument("-i", "--pdbqtfiles", help="Path to the PDBQT file library folder", required=True)
+    args.add_argument("-i", "--pdbqtfiles", help="Path to the main chemical library or results directory", required=True)
     args.add_argument("-c", "--csv", help="Path to the CSV file containing summarised docking results", required=True)
     args.add_argument("-n", "--newfolder", help="Path to the new folder", required=True)
     args.add_argument("-t", "--top", help="Top selection e.g., 100", required=True, type=int)
