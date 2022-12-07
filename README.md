@@ -39,7 +39,7 @@ Navigate to the **Compute** tab in the homepage menu and select "Instances" from
 
 &nbsp;
 
-In the cloud, the _shape_ (computer) is launched as an object termed an "Instance", and be a bare-metal machine, a virtual machine or a GPU - each shape has different characteristics. An _image_ refers to the operating system e.g., Ubuntu. Click on “edit” and then on the “Change image” button, a window will pop up on the right of the screen.
+In OCI, the _shape_ (computer) is launched as an object termed an "Instance", and can be a bare-metal machine, a virtual machine or a GPU - each shape has different characteristics. An _image_ refers to the operating system e.g., Ubuntu. Click on “edit” and then on the “Change image” button, a window will pop up on the right of the screen.
 
 &nbsp;
 
@@ -374,13 +374,13 @@ options:
   -sfactor SFACTOR    Scaling factor
 ```
 
-**_Once running, if the terminal is closed calculations will stop, and will needed to be restarted_**
+**_Once running, if the terminal is closed calculations will stop, and will needed to be restarted. At present, warpDOCK does not include checkpointing but will be addressed in future updates_**
 
 &nbsp;
 
 **Retrieving the results and compiling into a CSV file with maximum and minimum values over a specified number of poses**
 
-The program "FetchResults" is used to scrape through the logs file for each ligand and strip out the binding scores (kcal/mol), and write maximum and minimum values to a CSV file. The number of poses refers to the range e.g., the top pose and the next 3 poses.
+The program "FetchResults" is used to scrape through the logs file for each ligand and strip out the binding scores (kcal/mol), and write maximum and minimum values of a range of poses to a CSV file.
 
 ```
 FetchResults
@@ -408,3 +408,5 @@ options:
 ```
 
 Enjoy virtual screening. For any issues that arise please contact the Bruning Lab directly.
+
+For best practice in virtual ligand screening, we recommend reading the following _Nature Protocols_ paper by Brian K. Shoichet and colleagues (2021), which can be found here: https://www.nature.com/articles/s41596-021-00597-z
