@@ -85,6 +85,7 @@ sudo apt update
 exit
 ```
 &nbsp
+
 _Create a new instance in the **private subnet** called "NFS server", with the Canonical Ubuntu image and the following shape:_
 
 Vm.E4.Flex: 12 OCPUs and 16Gb RAM.
