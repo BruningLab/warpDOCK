@@ -47,8 +47,8 @@ def file_mover(fpath, ips):
 
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
-    args.add_argument("-input", help="Path to PDBQT file library for splitting into instance batches", required=True, type=str)
-    args.add_argument("-ips", help="Path to the IP list file", required=True, type=str)
+    args.add_argument("-input", help="Path to directory with main chemical library in ready to dock format", required=True, type=str)
+    args.add_argument("-ips", help="Path to the IP address file", required=True, type=str)
     paser = args.parse_args()
     file_mover(fpath=paser.input, ips=paser.ips)
 
