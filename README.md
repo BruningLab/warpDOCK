@@ -358,7 +358,7 @@ options:
 
 **Launching the queue-engine: warpdrive**
 
-The queue-engine can be launched from the control node by calling the Conductor. The s-factor is a value between 1 and 4 which sets the processing threshold limit. Typically, an s-factor of 3 is recommended.
+The queue-engine can be launched from the control node by calling the Conductor. The s-factor is a value between 1 and 4 which sets the processing threshold limit. Typically, an s-factor of 3 is recommended. Warpdrive can also be impelemented from within a single instance without the need to call the Conductor.
 
 ```
 Conductor
