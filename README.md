@@ -407,7 +407,7 @@ options:
   -n NEWFOLDER          [REQUIRED] Path to the new folder                     
   -t TOP                [REQUIRED] Top selection
 ```
-&nbsp
+&nbsp;
 
 Enjoy virtual screening. For any issues that arise please contact the Bruning Lab directly.
 
