@@ -84,7 +84,7 @@ sudo apt update
 
 exit
 ```
-&nbsp
+&nbsp;
 
 _Create a new instance in the **private subnet** called "NFS server", with the Canonical Ubuntu image and the following shape:_
 
@@ -271,7 +271,7 @@ sudo chmod +x Installer.sh
 ```
 Running the installer will download the warpDOCK code and Qvina2.1
 
-Ensure that the install stall worked by calling "vina".
+Ensure that the install worked properly by calling "vina" in the terminal.
 
 &nbsp;
 
