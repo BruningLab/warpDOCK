@@ -17,8 +17,6 @@ This documentation covers:
 
 _This documentation assumes that you have already set up your tenancy in your home region._
 
-&nbsp;
-
 To get started, ensure that you are in the correct region for which you want to create the virtual cloud network (VCN). Changing the region which hosts the VCN later will require setting up from scratch.
 
 &nbsp;
