@@ -305,6 +305,8 @@ Now, you are ready to start virtual screening from the Control Node :)
 &nbsp;
 
 4. **Usage and examples**
+Here we outline the programs of the warpDOCK pipeline (in the order one would use to perform a large virtual screen).
+&nbsp;
 
 **Importing ligand library directly into the VCN from ZINC**
 
