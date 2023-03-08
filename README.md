@@ -276,8 +276,6 @@ Ensure that the install worked properly by calling "vina" in the terminal.
 
 **3. Creating a custom image**
 
-&nbsp;
-
 For the creation of compute instances we will first make a clone of the image associated with the Control Node. This will ensure we have all the code and are linked to the NFS server and block volume.
 
 &nbsp;
@@ -305,6 +303,7 @@ Now, you are ready to start virtual screening from the Control Node :)
 &nbsp;
 
 4. **Usage and examples**
+&nbsp;
 Here we outline the programs of the warpDOCK pipeline (in the order one would use to perform a large virtual screen).
 &nbsp;
 
