@@ -409,11 +409,9 @@ options:
 &nbsp;
 
 For an example, we have provided a small 10K chemical library in 'ready to dock' format, a configuration file and the protein model used in the manuscript. These files are located in the 'example' folder. Before undertaking a very large virtual screen, have a go first using these files to make sure everything is in order (or your own). Depending on the number of instances used, the chemical library will need to be partitioned with FileDivider.py. 
-
 &nbsp;
 
 Enjoy virtual screening. For any issues that arise please contact the Bruning Lab directly.
-
 
 For best practice in virtual ligand screening, we recommend reading the following _Nature Protocols_ paper by Brian K. Shoichet and colleagues (2021), which can be found here: https://www.nature.com/articles/s41596-021-00597-z
 
