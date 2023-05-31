@@ -98,8 +98,6 @@ def driver(pdbqt_path, results_path, receptor_path, vina_config, show_queue=Fals
   
   
 if __name__ == '__main__':
-
-
     args = argparse.ArgumentParser(description="WarpDrive Queue Engine")
     args.add_argument('-pdbqt', help="[REQUIRED] Path to the PDBQT instance batches folder", required=True, type=str)
     args.add_argument('-results', help="[REQUIRED] Path to the results output folder", required=True, type=str)
@@ -140,4 +138,3 @@ if __name__ == '__main__':
     time_taken = int(end - start)
     complete_msg = "\nQueue completed in {0} ".format(datetime.timedelta(seconds=time_taken))
     print(complete_msg)
-  
