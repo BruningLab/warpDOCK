@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+""" Queue-engine designed for use with Qvina2 docking algorithm (default for warpDOCK) """
+
 import subprocess
 import argparse
 import multiprocessing
