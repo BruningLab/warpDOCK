@@ -97,7 +97,7 @@ def driver(pdbqt_path, results_path, receptor_path, vina_config, show_queue=Fals
   
   
   
-  if __name__ == '__main__':
+if __name__ == '__main__':
 
 
     args = argparse.ArgumentParser(description="WarpDrive Queue Engine")
