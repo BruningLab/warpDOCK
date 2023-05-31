@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+""" Conductor program to pilot the default WarpDrive queue-engine """
+
 import subprocess
 import time
 import threading
