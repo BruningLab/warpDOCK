@@ -4,8 +4,10 @@ A large-scale virtual drug discovery pipeline optimised for Oracle Cloud Infrast
 
 If you use warpDOCK, please cite: 
 &nbsp;
+
 McDougal, D.P., Rajapaksha, H.R., Pederick, J.P., and Bruning, J.B. warpDOCK: Large-Scale Virtual Drug Discovery Using Cloud Infrastructure, _ACS Omega_, 2023, DOI: https://doi.org/10.1021/acsomega.3c02249
 &nbsp;
+
 This documentation covers:
 
 - Setting up a virtual cloud network (VCN) in Oracle Cloud Infrastructure
